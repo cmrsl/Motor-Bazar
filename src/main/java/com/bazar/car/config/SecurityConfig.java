@@ -66,7 +66,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login-password").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login/otp/request").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/login/otp/verify").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/vehicles/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/vehicles/v1").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/vehicles/v1").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/vehicles/v1/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/vehicles/v1/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         // Health/actuator (Optional): uncomment if you want to expose health endpoints
                         //.requestMatchers("/actuator/health", "/actuator/info").permitAll()
