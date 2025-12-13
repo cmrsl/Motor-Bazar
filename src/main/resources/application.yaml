@@ -11,7 +11,7 @@ spring:
   application:
     name: Car-Bazar  # Application name
 
-# Database Configuration
+  # Database Configuration
   datasource:
     url: jdbc:postgresql://localhost:5432/car_bazaar_db  # Database URL
     username: postgres  # Database username
@@ -27,12 +27,12 @@ spring:
         format_sql: true  # Format SQL output
         jdbc:
           time_zone: UTC  # Set JDBC timezone
-# Multipart File Upload Configuration
+  # Multipart File Upload Configuration
   servlet:
     multipart:
       enabled: true  # Enable multipart uploads
 
-# Common Recommended Properties
+  # Common Recommended Properties
   main:
     allow-bean-definition-overriding: true  # Allow bean overriding (useful for dev)
   jackson:

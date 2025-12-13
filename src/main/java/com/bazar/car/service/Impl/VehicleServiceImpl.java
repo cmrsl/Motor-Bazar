@@ -8,7 +8,6 @@ import com.bazar.car.exception.VehicleNotFoundException;
 import com.bazar.car.repository.*;
 
 import com.bazar.car.service.CloudinaryService;
-import com.bazar.car.service.StorageService;
 
 import com.bazar.car.service.VehicleService;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +32,6 @@ public class VehicleServiceImpl implements VehicleService {
     private final CloudinaryService cloudinaryService;
     private final DealerRepository dealerRepository;
     private final CustomerRepository customerRepository;
-    private final StorageService storageService;
-
 
     @Override
     public VehicleResponseDto addVehicles(VehicleRequestDto dto, MultipartFile[] images) throws IOException {

@@ -1,17 +1,16 @@
-# Java 17
-FROM eclipse-temurin:17-jdk
-
-# App directory
+# -------- Build stage --------
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copy files
-COPY . .
+# -------- Run stage --------
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Build jar
-RUN ./mvnw clean package -DskipTests
-
-# Expose port (Render uses 10000 internally, but Spring will read env)
+# Render provides PORT env variable
 EXPOSE 8080
 
-# Run app
-CMD ["java", "-jar", "target/*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -30,11 +30,11 @@ public class User extends Auditable {
     @GeneratedValue
     private UUID id;
 
-    @Column(name = "first_name", nullable = false)
-    private boolean firstName;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "last_name", nullable = false)
-    private boolean lastName;
+    @Column(name = "last_name")
+    private String lastName;
 
     @NotBlank
     @Size(min = 3, max = 32)
@@ -64,11 +64,14 @@ public class User extends Auditable {
     @Column(name = "mobile_verified", nullable = false)
     private boolean mobileVerified = false;
 
-    @Column(name = "aadhaar_number")
-    private boolean aadhaarNumber = false;
+    @Size(min = 12, max = 12)
+    @Column(name = "aadhaar_number", nullable = true, length = 64)
+    private String aadhaarNumber;
 
-    @Column(name = "pan_number")
-    private boolean panNumber;
+
+    @Size(min = 10, max = 10)
+    @Column(name = "pan_number", nullable = true, length = 64)
+    private String panNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(name ="role", length = 32)

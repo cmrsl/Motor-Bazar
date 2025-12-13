@@ -1,0 +1,118 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+# =====================
+# Server Properties
+# =====================
+server:
+  port: ${PORT:8080}   # Render provides PORT automatically
+
+# =====================
+# Spring Application Properties
+# =====================
+---
+spring:
+  application:
+    name: Car-Bazar
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false        # ❌ disable in production
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+
+  servlet:
+    multipart:
+      enabled: true
+
+  main:
+    allow-bean-definition-overriding: true
+
+  jackson:
+    serialization:
+      INDENT_OUTPUT: false   # cleaner prod responses
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# =====================
+# Cloudinary
+# =====================
+cloudinary:
+  cloud-name: ${CLOUDINARY_NAME}
+  api-key: ${CLOUDINARY_KEY}
+  api-secret: ${CLOUDINARY_SECRET}
+
+# =====================
+# File Upload Configuration
+# =====================
+servlet:
+  multipart:
+    max-file-size: 10MB
+    max-request-size: 10MB
+
+# =====================
+# Application Custom Properties
+# =====================
+app:
+  storage:
+    location: /tmp/uploads   # Render-safe directory
+
+# =====================
+# User Service Config
+# =====================
+usersvc:
+  otp:
+    digits: 6
+    expiry-minutes: 10
+
+  rate-limit:
+    resend-min-interval-seconds: 60
+    max-sends-per-hour: 5
+
+  jwt:
+    secret: ${JWT_SECRET}
+    issuer: Car-Bazar
+    access-exp-minutes: 120
+
+  channels:
+    email-enabled: true
+    sms-enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include=health,info:
+        include=*:
+    health:
+      show-details=always:
+
+# =====================
+# Logging
+# =====================
+logging:
+  level:
+    root: INFO
+    org.springframework.security: INFO
