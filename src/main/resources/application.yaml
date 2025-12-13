@@ -1,0 +1,123 @@
+# =====================
+# Server Properties
+# =====================
+server:
+  port: 8080  # Server port
+
+# =====================
+# Spring Application Properties
+# =====================
+spring:
+  application:
+    name: Car-Bazar  # Application name
+
+# Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_bazaar_db  # Database URL
+    username: postgres  # Database username
+    password: vijayk    # Database password
+    driver-class-name: org.postgresql.Driver  # JDBC driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Auto schema update
+    show-sql: true      # Show SQL queries in logs
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect  # Hibernate dialect
+        format_sql: true  # Format SQL output
+        jdbc:
+          time_zone: UTC  # Set JDBC timezone
+# Multipart File Upload Configuration
+  servlet:
+    multipart:
+      enabled: true  # Enable multipart uploads
+
+# Common Recommended Properties
+  main:
+    allow-bean-definition-overriding: true  # Allow bean overriding (useful for dev)
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true  # Pretty print JSON responses
+
+  mail:
+    host: smtp.gmail.com  # SMTP server host
+    port: 587               # SMTP server port
+    username: deepak509gupta@gmail.com
+    password: zngjmbwcgujdwdbz  # SMTP server password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+cloudinary:
+  cloud-name: dplxse1ik
+  api-key: 418686174868718
+  api-secret: Kv5ojJwIeGfPLUE896Qu-NkAvHI
+
+
+
+# =====================
+# File Upload Configuration
+# =====================
+servlet:
+  multipart:
+    max-file-size: 10MB      # Maximum file size for uploads
+    max-request-size: 10MB   # Maximum request size for uploads
+
+
+
+# =====================
+# Application Custom Properties
+# =====================
+app:
+  storage:
+    location: ./uploads  # File storage location
+
+
+usersvc:
+  otp:
+    digits: 6               # Number of digits in OTP
+    expiry-minutes: 10  # OTP expiration time in minutes
+  rate-limit:
+    resend-min-interval-seconds: 60  # Minimum interval between OTP resends
+    max-sends-per-hour: 5          # Maximum OTP sends per hour per user
+  jwt:
+    secret: a2b4c6d8e0f1g3h5j7k9l1m2n3p4q5r6  # JWT secret key
+    issuer: Car-Bazar          # JWT issuer
+    access-exp-minutes: 120      # JWT access token expiration time in minutes
+  channels:
+    email-enabled: true  # Enable email channel for OTP
+    sms-enabled: false   # Disable SMS channel for OTP
+  sms:
+    provider: MSG91  # SMS provider
+    msg91:
+      auth-key: your_msg91_auth_key  # MSG91 authentication key
+      flow-id: your_msg91_flow_id    # MSG91 flow ID
+      sender-id: CARBAZ  # MSG91 sender ID
+      dlt-te-id: your_dlt_template_id  # DLT template ID for MSG91
+      real-time-response: true  # Disable real-time response for MSG91
+      timeout-ms: 5000          # Timeout for MSG91 requests in milliseconds
+
+
+
+
+
+
+# =====================
+# Logging Configuration
+# =====================
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG  # Debug security logs
+
+
+
+# =====================
+# End of Configuration
+# =====================
