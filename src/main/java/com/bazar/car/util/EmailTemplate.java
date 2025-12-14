@@ -9,29 +9,45 @@ public final class EmailTemplate {
     }
 
     public  static String signUpOtpBody(String userName, String otp, int minutesValid) {
-        return "Hi "+ userName+ "\n\n" +
-                "Thank you for signing up with Motor Bazaar! " +
-                "Your One-Time Password (OTP) " + otp + " is required to " +
-                "verify your account and complete the registration process." +
-                "This OTP is valid for the next "+minutesValid+" minutes. " +
-                "Please do not share it with anyone. \n\n" +
-                "If you didn't request this OTP, please ignore this email.\n\n" +
-                "Best regards,\n" +
-                "Motor Bazaar Team";
+
+        return """
+        <!DOCTYPE html>
+        <html>
+        <body style="font-family:Arial, sans-serif; background:#f4f6f8; padding:20px;">
+            <div style="max-width:500px; margin:auto; background:#ffffff; padding:25px; border-radius:8px;">
+                <h2 style="text-align:center; color:#1f2937;">Motor Bazaar</h2>
+
+                <p>Hi <b>%s</b>,</p>
+
+                <p>
+                    Use the OTP below to verify your email address.
+                    This OTP is valid for <b>%d minutes</b>.
+                </p>
+
+                <div style="
+                    text-align:center;
+                    font-size:24px;
+                    font-weight:bold;
+                    letter-spacing:4px;
+                    background:#f3f4f6;
+                    padding:15px;
+                    border-radius:6px;
+                    margin:20px 0;
+                ">
+                    %s
+                </div>
+
+                <p style="font-size:13px; color:#6b7280;">
+                    If you did not request this, you can safely ignore this email.
+                </p>
+
+                <p style="font-size:13px; color:#6b7280;">
+                    — Motor Bazaar Team
+                </p>
+            </div>
+        </body>
+        </html>
+        """.formatted(userName, minutesValid, otp);
     }
-
-//    public static String getOtpEmailTemplate(String otp) {
-//        return "<html>" +
-//                "<body>" +
-//                "<h2>Your One-Time Password (OTP)</h2>" +
-//                "<p>Use the following OTP to complete your action:</p>" +
-//                "<h3 style=\"color:blue;\">" + otp + "</h3>" +
-//                "<p>This OTP is valid for the next 10 minutes. Please do not share it with anyone.</p>" +
-//                "<br>" +
-//                "<p>Thank you,<br/>Bazar Car Team</p>" +
-//                "</body>" +
-//                "</html>";
-//    }
-
 
 }

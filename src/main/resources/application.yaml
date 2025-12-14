@@ -56,10 +56,11 @@ spring:
       INDENT_OUTPUT: true  # Pretty print JSON responses
 
   mail:
-    host: smtp.gmail.com  # SMTP server host
+    host: smtp-relay.brevo.com    # SMTP server host
     port: 587               # SMTP server port
-    username: deepak509gupta@gmail.com
-    password: zngjmbwcgujdwdbz  # SMTP server password
+    username: 9e0505001@smtp-brevo.com
+    password: R5yFMUSI1qrAZnk8  # SMTP server password
+    MAIL_FROM: motorbazaap.mp@gmail.com  # Default "from" email address
     properties:
       mail:
         smtp:
