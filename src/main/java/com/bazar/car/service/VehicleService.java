@@ -1,5 +1,11 @@
 package com.bazar.car.service;
 
+
+import com.bazar.car.dto.*;
+import com.bazar.car.entity.VehicleStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 import com.bazar.car.dto.VehicleRequestDto;
 import com.bazar.car.dto.VehicleResponseDto;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,15 +21,15 @@ public interface VehicleService {
     VehicleResponseDto addVehicles(VehicleRequestDto dto, MultipartFile[] images) throws IOException;
 
     // Get All Vehicles
-    List<VehicleResponseDto> getAllVehicles();
+    Page<VehicleResponseDto> searchVehicles(VehicleSearchRequest request, Pageable pageable);
 
     // Get Vehicle by ID
-    VehicleResponseDto getById(Long id);
+    VehicleResponseDto getByRegistrationNumber(String registrationNumber);
 
-    // Update Vehicle with Images
-    VehicleResponseDto update(Long id, VehicleRequestDto dto, MultipartFile[] images) throws IOException;
+    VehicleResponseDto updateByRegistrationNumber(String registrationNumber,VehicleRequestDto dto,MultipartFile[] images) throws IOException;
 
-    // Delete Vehicle by ID
-    void delete(Long id) throws IOException;
+    void softDeleteByRegistrationNumber(String registrationNumber);
+
+    void updateVehicleStatus(String registrationNumber,VehicleStatus status);
 
 }
